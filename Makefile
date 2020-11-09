@@ -20,8 +20,8 @@
 SHELL = /bin/bash
 .SHELLFLAGS = -o pipefail -c
 
-title = /bin/echo -e "\x1b[1m\x1b[32m\#\#\#\# $1\x1b[0m"
-ok = /bin/echo -e "\x1b[1m\x1b[32m[OK] $1\x1b[0m"
+title = echo -e "\x1b[1m\x1b[32m\#\#\#\# $1\x1b[0m"
+ok = echo -e "\x1b[1m\x1b[32m[OK] $1\x1b[0m"
 
 #####################################################################
 # Platform detection
@@ -33,7 +33,7 @@ export STACK_WORK	:= .stack-work
 BUILD 				:= $(STACK_WORK)
 BIN_DIR 			:= $(shell stack path --local-install-root)/bin
 
-PP 		= $(BIN_DIR)/pp
+PP 		= $(BIN_DIR)/pandoc-pp
 PP_WINE	= $(BUILD)/wine/pp.exe
 
 compile: $(PP)
@@ -147,7 +147,7 @@ $(BUILD)/$(PLANTUML).jar:
 $(BUILD)/$(DITAA).jar:
 	@$(call title,"downloading $(notdir $@)")
 	@mkdir -p $(dir $@)
-	wget $(DITAA_URL) -O $@
+	wget $(DITAA_URL) --no-check-certificate -O $@
 	@$(call ok,"$@")
 
 #####################################################################

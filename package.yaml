@@ -58,7 +58,7 @@ library:
   - unix-compat
 
 executables:
-  pp:
+  pandoc-pp:
     main:                pp.hs
     source-dirs:         app
     ghc-options:

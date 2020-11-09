@@ -1362,7 +1362,8 @@ litShow env lang content = formatedBlock
             Rst -> reStructuredTextBlock
 
         markdownBlock = case lang of
-            Just lang'  -> unlines [sep ++ " {." ++ lang' ++ "}", content, sep]
+            -- Just lang'  -> unlines [sep ++ " {." ++ lang' ++ "}", content, sep]
+            Just lang'  -> unlines [sep ++ " " ++ lang', content, sep]
             Nothing     -> unlines [sep, content, sep]
 
         reStructuredTextBlock = case lang of
@@ -1389,13 +1390,13 @@ defaultLitLang name = case (map toLower (takeBaseName name), map toLower (takeEx
     (_, ".bash")        -> Just "bash"
     (_, ".sh")          -> Just "bash"
     (_, ".bib")         -> Just "bibtex"
-    (_, ".c")           -> Just "c"
-    (_, ".cc")          -> Just "c"
-    (_, ".cpp")         -> Just "c"
-    (_, ".c++")         -> Just "c"
-    (_, ".h")           -> Just "c"
-    (_, ".hpp")         -> Just "c"
-    (_, ".h++")         -> Just "c"
+    (_, ".c")           -> Just "cpp"
+    (_, ".cc")          -> Just "cpp"
+    (_, ".cpp")         -> Just "cpp"
+    (_, ".c++")         -> Just "cpp"
+    (_, ".h")           -> Just "cpp"
+    (_, ".hpp")         -> Just "cpp"
+    (_, ".h++")         -> Just "cpp"
     (_, ".lisp")        -> Just "commonlisp"
     (_, ".cs")          -> Just "cs"
     (_, ".css")         -> Just "css"
